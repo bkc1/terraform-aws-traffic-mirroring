@@ -2,7 +2,7 @@
 
 ## Overview
 
-Simple reference that shows how to setup traffic mirroring from a source NLB to target NLB on a private network. The EC2 instances are running a simulated listener port on 8888 using Netcat. VXLAN encapsulated traffic is mirrored from the source NLB to the target NLB on port 4789. A VXLAN interface is created on the target instance to capture enuncapsulated traffic from the traffic mirroing session.  
+Simple reference that shows how to setup traffic mirroring from a source NLB to target NLB on a private network. The EC2 instances are running a simulated listener port on 8888 using Netcat. VXLAN encapsulated traffic is mirrored from the source NLB to the target NLB on port 4789. A VXLAN interface is created on the target instance to capture unencapsulated traffic from the traffic mirroing session.  
 
 ## Prereqs & Dependencies
 
