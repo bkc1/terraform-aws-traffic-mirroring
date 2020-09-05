@@ -2,8 +2,7 @@
 
 ## Overview
 
-Simple demo that highlights how to setup traffic mirroring from a source NLB to target NLB on a private network. The EC2 instances are running a simulated listener port on 8888 using netcat. VXLAN encapsulated traffic is mirrored from the source NLB to the target NLB on port 4789.
-
+Simple reference that shows how to setup traffic mirroring from a source NLB to target NLB on a private network. The EC2 instances are running a simulated listener port on 8888 using Netcat. VXLAN encapsulated traffic is mirrored from the source NLB to the target NLB on port 4789. A VXLAN interface is created on the target instance to capture enuncapsulated traffic from the traffic mirroing session.  
 
 ## Prereqs & Dependencies
 
@@ -40,7 +39,8 @@ Using the bastion public dns name that is output'd by terraform, SSH to the bast
 ```
 ssh -A ec2-user@<bastion_pub_DNS_name>
 ```
-### Viewing Mirrored traffic
+
+### Viewing Mirrored Traffic
 
 Once logged into the bastion, you can then SSH to both EC2 instances behind the NLBs. Jumping from the bastion:
 ```
@@ -54,8 +54,8 @@ Confirm VXLAN traffic over the primary network interface
 ```
 sudo tcpdump -nni eth0 |grep VXLAN
 ```
-Run a packet capture on the vxlan1 interface to see unencapsulated PCAP info. See the user-data script for the target instance to see how the vxlan interface was configured.
+Run a packet capture on the vxlan1 interface to see unencapsulated PCAP info. See the user-data script for the target instance to see how the vxlan interface is configured.
 ```
 sudo tcpdump -nni vxlan1
 ```
-The tcpdump output should show traffic from the src NLB network interface to the pricate IP address of the target instance
+The tcpdump output should show traffic from the src NLB network interface to the private IP address of the target instance
